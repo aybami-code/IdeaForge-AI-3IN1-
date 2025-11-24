@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IdeaForge — Niche + Idea + MVP (One Page)</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="color-scheme" content="dark light">
+</head>
+<body class="theme-dark">
+  <div id="app" class="app-container">
+    <!-- Header injected by header.js -->
+    <div id="header-root"></div>
+
+    <main class="container">
+      <!-- Hero -->
+      <section class="hero card">
+        <h1 class="hero-title">IdeaForge — Niche → Idea → MVP</h1>
+        <p class="hero-sub">Enter a skill, interest, or market and get a validated niche, a unique product idea, and a practical 14-day MVP plan — all on one page, no backend.</p>
+      </section>
+
+      <!-- Input -->
+      <section class="input-section card" aria-labelledby="input-label">
+        <label id="input-label" for="userInput" class="input-label">Describe your interest, skill, or market</label>
+        <textarea id="userInput" rows="4" placeholder="e.g. 'productivity for remote designers'"></textarea>
+
+        <div class="controls">
+          <div class="left-controls">
+            <button id="generateBtn" class="btn-primary" aria-live="polite">Generate</button>
+            <button id="copyBtn" class="btn-muted" title="Copy last result">Copy</button>
+          </div>
+          <div class="right-controls">
+            <button id="themeToggle" class="icon-btn" aria-pressed="false" title="Toggle theme">🌓</button>
+          </div>
+        </div>
+
+        <p class="hint">Tip: be specific. e.g., "Notion workflow for indie writers" yields better ideas.</p>
+      </section>
+
+      <!-- Tabs -->
+      <section class="tabs card" role="tablist" aria-label="Result tabs">
+        <div class="tab-buttons" role="tablist" aria-orientation="horizontal">
+          <button class="tab-btn active" data-tab="niche" role="tab" aria-selected="true">Niche</button>
+          <button class="tab-btn" data-tab="idea" role="tab" aria-selected="false">Idea</button>
+          <button class="tab-btn" data-tab="mvp" role="tab" aria-selected="false">MVP Plan</button>
+        </div>
+
+        <div class="tab-panels">
+          <div id="niche" class="tab-panel active" role="tabpanel">— Niche output appears here —</div>
+          <div id="idea" class="tab-panel" role="tabpanel" hidden>— Idea output appears here —</div>
+          <div id="mvp" class="tab-panel" role="tabpanel" hidden>— MVP output appears here —</div>
+        </div>
+      </section>
+
+      <!-- Footer injected by footer.js -->
+      <div id="footer-root"></div>
+    </main>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
