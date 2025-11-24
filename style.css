@@ -1,0 +1,145 @@
+/* style.css — IdeaForge UI
+   Design tokens, layout, components, animations.
+   Follow the design & motion laws: only transform & opacity animated.
+*/
+
+/* ---- CSS Variables (theme) ---- */
+:root{
+  --bg: #0F1115;
+  --surface: rgba(255,255,255,0.03);
+  --muted: #A6B0C3;
+  --text: #E6EEF6;
+  --primary: #6E5BFF;
+  --accent: #00C4FF;
+  --success: #22C55E;
+  --danger: #EF4444;
+
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --gap: 24px;
+  --max-width: 1120px;
+  --shadow: 0 8px 30px rgba(3,7,18,0.6);
+}
+
+/* Light theme variables (toggle via .theme-light on body) */
+body.theme-light {
+  --bg: #F7F9FC;
+  --surface: #FFFFFF;
+  --muted: #6B7280;
+  --text: #0B1220;
+}
+
+/* ---- Base ---- */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Container */
+.app-container{min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.container{
+  width:100%;
+  max-width:var(--max-width);
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap);
+}
+
+/* Cards (glassmorphism) */
+.card{
+  background:var(--surface);
+  border-radius:var(--radius-lg);
+  padding:20px;
+  box-shadow:var(--shadow);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+
+/* Hero */
+.hero{ text-align:center;padding:40px 24px}
+.hero-title{font-size:36px;margin:0 0 8px;line-height:1.05;font-weight:700}
+.hero-sub{margin:0;color:var(--muted)}
+
+/* Input Section */
+.input-section{display:flex;flex-direction:column;gap:12px}
+.input-label{font-weight:600;color:var(--muted)}
+textarea{
+  width:100%;
+  min-height:96px;
+  padding:16px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.02);
+  color:var(--text);         /* explicit color to avoid white-on-white issue */
+  font-size:16px;
+  resize:vertical;
+  outline:none;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+textarea::placeholder{ color: var(--muted) }
+
+/* Controls */
+.controls{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.left-controls{display:flex;gap:8px}
+.right-controls{display:flex;gap:8px;align-items:center}
+
+/* Buttons */
+.btn-primary, .btn-muted, .icon-btn{
+  border:0;cursor:pointer;border-radius:12px;padding:10px 16px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;
+  transition: transform 140ms cubic-bezier(.2,.9,.3,1), box-shadow 140ms;
+}
+.btn-primary{
+  background: linear-gradient(90deg,var(--primary), #5B7BFD);
+  color:white; box-shadow: 0 6px 18px rgba(110,91,255,0.12);
+}
+.btn-primary:hover{ transform:translateY(-2px) scale(1.03) }
+.btn-muted{ background: rgba(255,255,255,0.03); color:var(--muted) }
+.icon-btn{ background: transparent; color:var(--muted); font-size:18px }
+
+/* Hint */
+.hint{ color:var(--muted); font-size:13px; margin-top:6px }
+
+/* Tabs */
+.tabs{display:flex;flex-direction:column;gap:14px}
+.tab-buttons{display:flex;gap:8px}
+.tab-btn{
+  padding:10px 14px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.03);
+  color:var(--muted);cursor:pointer;transition:all 180ms;
+}
+.tab-btn.active{ background: linear-gradient(90deg,var(--primary),#5B7BFD); color:white; transform:translateY(-2px) }
+.tab-panels{ margin-top:12px }
+.tab-panel{ padding:18px; min-height:160px; border-radius:12px; background: rgba(0,0,0,0.12); color:var(--text) }
+
+/* Small responsive */
+@media (max-width:640px){
+  .hero-title{ font-size:22px }
+  .container{ padding:18px }
+  textarea{ min-height:84px }
+}
+
+/* ---- Animations (transform & opacity only) ---- */
+@keyframes fadeInUp {
+  from { opacity:0; transform: translateY(10px) }
+  to { opacity:1; transform: translateY(0) }
+}
+.fade-in { animation: fadeInUp 360ms cubic-bezier(.16,.84,.28,1) both }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .btn-primary:hover, .tab-btn.active{ transform:none }
+  .fade-in { animation: none }
+}
+
+/* Accessibility focus */
+:focus{ outline: none; box-shadow: 0 0 0 3px rgba(110,91,255,0.12) }
+
+/* Utility */
+.hidden{ display:none !important }
